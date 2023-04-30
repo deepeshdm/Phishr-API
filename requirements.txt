@@ -1,0 +1,11 @@
+regex
+urllib3==1.26.6
+uvicorn
+fastapi
+requests
+pydantic
+gunicorn
+uvloop
+httptools
+numpy
+whois==0.9.27
