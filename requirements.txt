@@ -8,4 +8,6 @@ gunicorn
 uvloop
 httptools
 numpy
+pickle5
 whois==0.9.27
+beautifulsoup4

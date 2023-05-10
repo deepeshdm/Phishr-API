@@ -9,3 +9,4 @@ TEMPORARY_DOMAIN_PLATFORMS = ["herokuapp.com","github.io","000webhostapp.com","f
                             "ecwid.com","tictail.com","gumroad.com","sellfy.com","fastspring.com","sendowl.com","paddle.com","gumtree.com",
                             "mozello.com","ucraft.com","carrd.co","launchrock.com","tilda.cc","bubble.io","instapage.com",   
                             "unbounce.com","leadpages.com","getresponse.com","wordpress.com"]
+

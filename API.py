@@ -2,13 +2,21 @@
 import Utils
 
 # Returns score (0-100) , 0 is malicious 100 is safest site
-def get_prediction(url, model_path):
+def get_prediction(url, model):
 
-    SCORE = 100
+    SCORE = 200
 
     # Check Top 1 million valid sites
     if Utils.check_top1million_database(url) : 
         return SCORE
+    
+    # Check 40 blacklist sources
+    if Utils.checkURLVoid(url)>0:
+        print("URL is blacklisted in UrlVoid's system !")
+        return 0
+    else:
+        print("URL is Safe in UrlVoid's system !")
+
 
     # Check if HTTP/HTTPS
     if Utils.is_https(url)!=True:
@@ -21,6 +29,9 @@ def get_prediction(url, model_path):
     if Utils.check_mcafee_database(url)!=True:
         SCORE = SCORE - 20
 
+    if Utils.checkSucuriBlacklists(url)!=True:
+        SCORE = SCORE - 20
+
     if Utils.is_temporary_domain(url):
         print("Domain is registered from unsecure source")
         SCORE = SCORE - 20
@@ -29,6 +40,15 @@ def get_prediction(url, model_path):
     if Utils.get_days_since_creation(url,3)!=True:
         print("Domain is less than 3 months old")
         SCORE = SCORE - 20
+
+    if Utils.checkLocalBlacklist(url):
+        print("The URL is blacklisted !")
+        SCORE = SCORE - 40
+    
+    # Make prediction using AI model
+    if Utils.isURLMalicious(url,model)==1:
+        print("Model predicted the URL as malicious")
+        SCORE = SCORE - 40
 
     return SCORE
     

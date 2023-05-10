@@ -1,6 +1,6 @@
 
-
 import uvicorn
+import pickle
 from fastapi import FastAPI
 from UrlData import UrlData
 from API import get_prediction
@@ -24,7 +24,10 @@ app.add_middleware(
 
 # ------------------------------------------
 
-model_path = r"Malicious_URL_Prediction.h5"
+# load the LightGBM classifier using pickle
+print("Loading the model...")
+with open('lightgbm_classifier.pkl', 'rb') as file:
+    clf = pickle.load(file)
 
 # passing variables to ML model to return prediction
 # NOTE : the request is POST
@@ -39,7 +42,7 @@ def predict(data: UrlData):
 
 
     # predict price
-    prediction = get_prediction(url,model_path)
+    prediction = get_prediction(url,clf)
     print("Predicted Probability : ",prediction)
 
     # always return the output as dictionary/json.
@@ -67,24 +70,5 @@ if __name__ == '__main__':
 
 # NOTE : CLI command for deployment on Railway "uvicorn app:app --host 0.0.0.0 --port $PORT"
 # NOTE : On Railway app we provide the port as $PORT, the port is provided by railway cloud.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
