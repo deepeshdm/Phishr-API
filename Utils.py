@@ -4,7 +4,6 @@ import string
 import socket
 import os
 from urllib.parse import urlparse
-from urllib.parse import urlparse
 import requests
 import csv
 from whois import whois
@@ -26,6 +25,22 @@ def check_top1million_database(url):
                 print(f"{url} is in the top 1 million websites according to Alexa.")
                 return True
         print(f"{url} is not in the top 1 million websites according to Alexa.")
+        return False
+
+
+# Extracts the main domain and matches it
+def check_top1million_database_2(url):
+    # Extract the domain from the URL
+    domain = urlparse(url).netloc
+    if not domain:
+        domain = url.split('/')[0]
+    with open('top-1million-sites.csv', 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if domain == row[1] or domain == "www."+row[1]:
+                print(f"{domain} is in the top 1 million websites according to Alexa.")
+                return True
+        print(f"{domain} is not in the top 1 million websites according to Alexa.")
         return False
 
 
@@ -109,6 +124,7 @@ def checkLocalBlacklist(url):
                 return True
     return False
 
+
 def checkSucuriBlacklists(url):
     # Construct the URL for sitecheck.sucuri.net
     check_url = f"https://sitecheck.sucuri.net/results/{url}"
@@ -116,13 +132,13 @@ def checkSucuriBlacklists(url):
     # Make the HTTP GET request
     response = requests.get(check_url)
 
-    # Check if "Site is not Blacklisted" is present in the response body
-    if "Site is not Blacklisted" in response.text:
-        print(f"{url} is safe to visit according to Sucuri Blacklists.")
-        return True
-    else:
+    # Check if "Site is Blacklisted" is present in the response body
+    if "Site is Blacklisted" in response.text:
         print(f"{url} is NOT safe to visit according to Sucuri Blacklists.")
         return False
+    else:
+        print(f"{url} is safe to visit according to Sucuri Blacklists.")
+        return True
 
 
 # scan UrlVoid's 40 blacklist sources and return 
@@ -149,6 +165,21 @@ def checkURLVoid(url):
             return 0
     except:
        return 0
+
+# Returns false if URL is considered malicious
+def check_Nortan_WebSafe(url):
+    try:
+        response = requests.get(f"https://safeweb.norton.com/report/show?url={url}")
+        html_content = response.text
+        if "known dangerous webpage" in html_content:
+            print("The URL is NOT safe as per Nortan Safe Web !")
+            return False
+        else:
+            print("The URL is safe as per Nortan Safe Web !")
+            return True
+    except Exception:
+        return True
+
 
 #---------------------------------------------------------------------------------------
 
