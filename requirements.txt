@@ -11,3 +11,8 @@ numpy
 pickle5
 whois==0.9.27
 beautifulsoup4
+pyopenssl
+json2html
+tqdm
+python-Levenshtein
+ail-typo-squatting
