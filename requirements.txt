@@ -5,15 +5,17 @@ fastapi
 requests
 pydantic
 gunicorn
-# uvloop
+uvloop
 httptools
 numpy
 pickle5
 whois==0.9.27
+python-whois
 beautifulsoup4
 pyopenssl
 json2html
 tqdm
 python-Levenshtein
 ail-typo-squatting
+lightgbm
 firebase-admin==6.1.0
