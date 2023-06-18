@@ -17,7 +17,6 @@ def get_prediction(url, model):
         "isTemporaryDomain": False,
         "isOlderThan3Months": True,
         "isBlackListedinIpSets": False,
-        "typosquattedURLs": None,  # removed
         "target_urls": None
     }
 

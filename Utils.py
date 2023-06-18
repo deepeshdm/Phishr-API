@@ -20,8 +20,8 @@ import firebase_admin
 from firebase_admin import firestore
 from firebase_admin import credentials
 
-# Firestore config
-PRIVATE_KEY_PATH = "firebase/phishr-adil-firebase-adminsdk-48q76-5172f99408.json"
+# Firebase Private Key
+PRIVATE_KEY_PATH = "firebase/phishr-d74a9-firebase-adminsdk-vcpiv-0328924687.json"
 cred = credentials.Certificate(PRIVATE_KEY_PATH)
 firebase_admin.initialize_app(cred)
 # Create a Firestore client

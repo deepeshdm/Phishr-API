@@ -5,7 +5,7 @@ fastapi
 requests
 pydantic
 gunicorn
-uvloop
+# uvloop
 httptools
 numpy
 pickle5
@@ -16,3 +16,4 @@ json2html
 tqdm
 python-Levenshtein
 ail-typo-squatting
+firebase-admin==6.1.0
