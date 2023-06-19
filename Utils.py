@@ -64,12 +64,15 @@ def check_top1million_database_2(url):
 
 # Check if a URL has SSL certificate (https://github.com/narbehaj/ssl-checker)
 def check_ssl_certificate(url):
-    ssl_checker = SSLChecker()
-    args = {'hosts': [url]}
-    output = ssl_checker.show_result(ssl_checker.get_args(json_args=args))
-    if "cert_valid" in output:
-        return True
-    else:
+    try:
+        ssl_checker = SSLChecker()
+        args = {'hosts': [url]}
+        output = ssl_checker.show_result(ssl_checker.get_args(json_args=args))
+        if "cert_valid" in output:
+            return True
+        else:
+            return False
+    except:
         return False
 
 
