@@ -3,7 +3,7 @@
 ### A Rest API for 'Phishr' - A Cybersecurity utility for detecting malicious Urls
 
 <div align="center">
-<Img src="/docs.png"/>
+<Img width="85%" src="/docs.png"/>
 </div>
 
 ## API Guide
