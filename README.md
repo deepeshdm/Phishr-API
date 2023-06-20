@@ -53,6 +53,40 @@ NOTE : It is a scoring-based system where the URL is first assigned the highest 
 - React Web Interface repository - [here](https://github.com/deepeshdm/phishr)
 - Model Training repository - [here](https://github.com/deepeshdm/Phishing-Attack-Domain-Detection)
 
+
+## To Run (Locally)
+
+1. Git clone the project repository on your local system
+```
+git clone https://github.com/deepeshdm/Phishr-API.git
+```
+
+2. Install dependencies in requirements.txt
+```
+pip install -r requirements.txt
+```
+
+3. Create a new Firebase project and setup a Firestore database. Generate a private key file through the Firebase console and place it inside "/firebase" directory. If you already have Firestore setup for Frontend then use the same project to generate private key file.
+```
+{
+  "type": "service_account",
+  "project_id": "XXXXXXXXXXX",
+  "private_key_id": "XXXXXXXXXXXX",
+  "private_key": "XXXXXXXXXXXXX",
+  "client_email": "XXXXXXXXXXXXXXXXXX",
+  "client_id": "XXXXXXXXXXXXXXXX",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "XXXXXXXXXXXX",
+  "universe_domain": "googleapis.com"
+}
+```
+4. Start the FastAPI server on localhost
+```
+python app.py
+```
+
 References :
  - https://www.kaggle.com/datasets/cheedcheed/top1m
  - https://github.com/firehol/blocklist-ipsets
