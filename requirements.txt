@@ -9,7 +9,6 @@ uvloop
 httptools
 numpy
 pickle5
-whois==0.9.27
 python-whois
 beautifulsoup4
 pyopenssl
