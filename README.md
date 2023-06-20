@@ -82,7 +82,7 @@ pip install -r requirements.txt
   "universe_domain": "googleapis.com"
 }
 ```
-4. Start the FastAPI server on localhost
+4. Start the FastAPI server on localhost & then Visit "http://localhost:8000/docs" to check endpoints.
 ```
 python app.py
 ```
