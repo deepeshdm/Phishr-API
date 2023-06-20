@@ -5,6 +5,7 @@ import socket
 import os
 import ipaddress
 import Levenshtein
+import traceback
 from ail_typo_squatting import runAll
 import math
 from tqdm import tqdm
@@ -12,7 +13,7 @@ from urllib.parse import urlparse
 import requests
 import csv
 from ssl_checker import SSLChecker
-from whois import whois
+import whois
 from datetime import datetime
 from bs4 import BeautifulSoup
 from Known_Sites import TEMPORARY_DOMAIN_PLATFORMS
@@ -87,7 +88,7 @@ def is_temporary_domain(url):
 # Get domain registrar's name
 def get_registrar(url):
     try:
-        w = whois(url)
+        w = whois.whois(url)
         registrar = w.registrar
         return registrar
     except Exception as e:
@@ -99,7 +100,7 @@ def get_registrar(url):
 # Check if given domain is X months old
 def get_days_since_creation(domain, months):
     try:
-        w = whois(domain)
+        w = whois.whois(domain)
         creation_date = w.creation_date
         if type(creation_date) == list:
             creation_date = creation_date[0]
@@ -475,19 +476,20 @@ def array2String(someList):
         output = output + str(i) + " , "
     return output
 
-
 # Checks if a domain is active & registered
 def check_domain_registration(domain):
     # strip the url and extract domain
     domain = strip_url(domain)
     try:
-        w = whois(domain)
+        w = whois.whois(domain)
         if w.status:
             return w
         else:
             return None
-    except:
+    except Exception as e:
         print("Error occcured in check_domain_registration() !")
+        print("ERROR : ",str(e))  # Print the error message from the exception
+        traceback.print_exc()  # Print the full traceback
         return None
 
 
