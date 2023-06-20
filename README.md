@@ -47,8 +47,16 @@ This API is designed to detect potentially malicious URLs. It takes a URL as an 
   }
 ```
 
-▶️It is a scoring-based system where the URL is first assigned the highest score of 180, which is reduced at every detection step that it fails. The safest site would have a score close to 180, whereas the malicious URLs will have a score close to 0.
+NOTE : It is a scoring-based system where the URL is first assigned the highest score of 180, which is reduced at every detection step that it fails. The safest site would have a score close to 180, whereas the malicious URLs will have a score close to 0.
 
 - Checkout the API documentation - [here](phishr-api.up.railway.app/docs) 
 - React Web Interface repository - [here](https://github.com/deepeshdm/phishr)
 - Model Training repository - [here](https://github.com/deepeshdm/Phishing-Attack-Domain-Detection)
+
+References :
+ - https://www.kaggle.com/datasets/cheedcheed/top1m
+ - https://github.com/firehol/blocklist-ipsets
+ - https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset
+ - https://github.com/narbehaj/ssl-checker
+
+
